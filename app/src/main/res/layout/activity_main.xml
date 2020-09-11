@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#75FFFFFF"
+    android:orientation="vertical">
+
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_main"
+            android:background="@color/cardview_light_background"
+            >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Study Mate"
+            android:textColor="#3F51B5"
+            android:textSize="22dp" />
+</androidx.appcompat.widget.Toolbar>
+
+
+    <View
+        android:background="@color/cardview_dark_background"
+        android:layout_width="match_parent"
+        android:layout_height="2px"/>
+
+    <LinearLayout
+        android:layout_width="427dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:paddingTop="80dp">
+
+
+        <Button
+            android:id="@+id/btn_korean"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="국어"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_math"
+            android:layout_width="96dp"
+            android:background="@color/cardview_dark_background"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="수학"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_english"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="영어"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_sciance"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="과학"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_community"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="사회"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_koreanhistory"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="한국사"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_essay"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="논술"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_music"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="음악"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_art"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="미술"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_physical"
+            android:layout_width="96dp"
+
+            android:layout_height="88dp"
+            android:layout_margin="7dp"
+            android:background="@color/cardview_dark_background"
+
+
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="체육"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+
+    </LinearLayout>
+
+
+
+    <View
+        android:background="@color/cardview_dark_background"
+        android:layout_width="match_parent"
+        android:layout_height="2px"/>
+</LinearLayout>
