@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -24,29 +23,24 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class GPS2 extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     Marker selectedMarker;
     View marker_root_view;
     TextView tv_marker;
     private GoogleMap mMap;
-    private ArrayList<MarkerItem> arrayList;
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -54,60 +48,50 @@ public class GPS2 extends FragmentActivity implements OnMapReadyCallback, Google
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.53, 126.95669), 14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.537523, 126.96558), 14));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 
-
-        setCustoMarkerView();
+        setCustomMarkerView();
         getSampleMarkerItems();
 
 
     }
 
+    private void setCustomMarkerView() {
+
+        marker_root_view = LayoutInflater.from(this).inflate(R.layout.markerlayout, null);
+        tv_marker = (TextView) marker_root_view.findViewById(R.id.tv_marker);
+    }
+
+
     private void getSampleMarkerItems() {
         ArrayList<MarkerItem> sampleList = new ArrayList();
 
-        arrayList = new ArrayList<>();
 
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Location");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    MarkerItem markerItem = snapshot.getValue(MarkerItem.class);
-                    arrayList.add(markerItem);
+        sampleList.add(new MarkerItem(37.538523, 126.96568, 2500000));
+        sampleList.add(new MarkerItem(37.527523, 126.96568, 100000));
+        sampleList.add(new MarkerItem(37.549523, 126.96568, 15000));
+        sampleList.add(new MarkerItem(37.538523, 126.95768, 5000));
 
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-            }
-        });
 
         for (MarkerItem markerItem : sampleList) {
             addMarker(markerItem, false);
         }
 
-
     }
+
+
 
     private Marker addMarker(MarkerItem markerItem, boolean isSelectedMarker) {
 
-        LatLng position = new LatLng(markerItem.getLatitute(), markerItem.getLongitute());
-        String name = markerItem.getName();
-        String formatted = NumberFormat.getCurrencyInstance().format((name));
+
+        LatLng position = new LatLng(markerItem.getLat(), markerItem.getLon());
+        int price = markerItem.getPrice();
+        String formatted = NumberFormat.getCurrencyInstance().format((price));
 
         tv_marker.setText(formatted);
 
@@ -120,7 +104,7 @@ public class GPS2 extends FragmentActivity implements OnMapReadyCallback, Google
         }
 
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.title(String.valueOf(name));
+        markerOptions.title(Integer.toString(price));
         markerOptions.position(position);
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker_root_view)));
 
@@ -129,15 +113,10 @@ public class GPS2 extends FragmentActivity implements OnMapReadyCallback, Google
 
     }
 
-    private Marker addMarker(Marker marker, boolean isSelectedMarker) {
-        double latitude = marker.getPosition().latitude;
-        double longitude = marker.getPosition().longitude;
-       String name = String.valueOf(marker.getTitle());
-        MarkerItem temp = new MarkerItem(latitude, longitude, name);
-        return addMarker(temp, isSelectedMarker);
 
-    }
 
+
+    // View를 Bitmap으로 변환
     private Bitmap createDrawableFromView(Context context, View view) {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -152,20 +131,19 @@ public class GPS2 extends FragmentActivity implements OnMapReadyCallback, Google
         view.draw(canvas);
 
         return bitmap;
+    }
+
+
+    private Marker addMarker(Marker marker, boolean isSelectedMarker) {
+        double lat = marker.getPosition().latitude;
+        double lon = marker.getPosition().longitude;
+        int price = Integer.parseInt(marker.getTitle());
+        MarkerItem temp = new MarkerItem(lat, lon, price);
+        return addMarker(temp, isSelectedMarker);
 
     }
 
 
-    private void setCustoMarkerView() {
-        marker_root_view = LayoutInflater.from(this).inflate(R.layout.activity_location, null);
-        tv_marker = (TextView) marker_root_view.findViewById(R.id.tv_marker);
-    }
-
-
-    @Override
-    public void onMapClick(LatLng latLng) {
-        changeSelectedMarker(null);
-    }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
@@ -176,10 +154,12 @@ public class GPS2 extends FragmentActivity implements OnMapReadyCallback, Google
         changeSelectedMarker(marker);
 
         return true;
-
     }
 
+
+
     private void changeSelectedMarker(Marker marker) {
+        // 선택했던 마커 되돌리기
         if (selectedMarker != null) {
             addMarker(selectedMarker, false);
             selectedMarker.remove();
@@ -190,5 +170,15 @@ public class GPS2 extends FragmentActivity implements OnMapReadyCallback, Google
             selectedMarker = addMarker(marker, true);
             marker.remove();
         }
+
+
     }
+
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        changeSelectedMarker(null);
+    }
+
+
 }

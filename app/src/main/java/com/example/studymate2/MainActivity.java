@@ -109,15 +109,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button location = (Button) findViewById(R.id.action_location_main);
-        commuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Location.class);
-                startActivity(intent);
 
-            }
-        });
     }
 
 

@@ -106,7 +106,7 @@ Button button = findViewById(R.id.btn_location_math);
 button.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), GPS2.class);
+        Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
         startActivity(intent);
 
     }

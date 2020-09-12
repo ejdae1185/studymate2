@@ -6,17 +6,10 @@
     android:id="@+id/map"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:name="com.google.android.gms.maps.SupportMapFragment">
 
-    >
 
-    <TextView
-        android:id="@+id/tv_marker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/board"
-        android:gravity="center"
-        android:text="학원이름"
-        android:textSize="16sp" />
+
 
 
 </fragment>

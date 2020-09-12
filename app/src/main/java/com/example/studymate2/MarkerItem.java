@@ -1,39 +1,44 @@
 package com.example.studymate2;
 
+/**
+ * Created by TedPark on 16. 4. 26..
+ */
 public class MarkerItem {
-    double latitute;
-    double longitute;
-    String name;
 
-    public MarkerItem(double latitute, double longitute, String name) {
-        this.latitute = latitute;
-        this.longitute = longitute;
-        this.name = name;
+
+    double lat;
+    double lon;
+    int price;
+
+    public MarkerItem(double lat, double lon, int price) {
+        this.lat = lat;
+        this.lon = lon;
+        this.price = price;
     }
 
-    public double getLatitute() {
-        return latitute;
+    public double getLat() {
+        return lat;
     }
 
-    public void setLatitute(double latitute) {
-        this.latitute = latitute;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
-    public double getLongitute() {
-        return longitute;
+    public double getLon() {
+        return lon;
     }
 
-    public void setLongitute(double longitute) {
-        this.longitute = longitute;
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 
-    public String getName() {
-        return name;
+    public int getPrice() {
+        return price;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPrice(int price) {
+        this.price = price;
     }
+
+
 }
-
-
